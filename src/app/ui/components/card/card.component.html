@@ -1,0 +1,21 @@
+<div class="card">
+  <img
+    class="card-img-top"
+    *ngIf="imageUrl"
+    [src]="imageUrl"
+    alt="title"
+  />
+  <div class="card-body">
+    <h5 class="card-title" *ngIf="title">{{ title }}</h5>
+    <p class="card-text" *ngIf="text">
+      {{ text }}
+    </p>
+    <div
+      *ngIf="showButton"
+      (click)="btnOnClick($event)"
+      [className]="'btn ' + className"
+      >{{ buttonText }}</div
+    >
+
+  </div>
+</div>

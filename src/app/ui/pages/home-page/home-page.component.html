@@ -1,0 +1,26 @@
+<h2>Movies</h2>
+<hr />
+
+<div class="row">
+  <div class="col-md-6 mb-3" *ngFor="let movie of movies">
+    <app-card
+      [id]="movie.id"
+      [title]="movie.title"
+      [text]="movie.description"
+      [imageUrl]="movie.imageUrl"
+      [showButton]="true"
+      [className]="'btn-success'"
+      [buttonText]="'See Details'"
+      (onClick)="onClick(movie.id)"
+    ></app-card>
+  </div>
+  <mat-paginator
+    [length]="totalAmount"
+    [pageSize]="postsPerPage"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onChangedPage($event)"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>
+
