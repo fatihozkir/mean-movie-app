@@ -1,13 +1,12 @@
-import { HomePageComponent } from './home-page.component';
 import { CoreModule } from './../../../core/modules/core.module';
-import { CardComponent } from './../../components/card/card.component';
 import { NgModule } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { CategoryDetailPageComponent } from './category-detail-page.component';
 
 @NgModule({
   imports: [CoreModule, MatPaginatorModule],
-  exports: [HomePageComponent],
-  declarations: [HomePageComponent, CardComponent],
+  exports: [CategoryDetailPageComponent],
+  declarations: [CategoryDetailPageComponent],
   providers: [],
 })
-export class HomePageModule {}
+export class CategoryDetailPageModule {}

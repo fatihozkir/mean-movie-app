@@ -1,3 +1,6 @@
+import { MovieDetailPageComponent } from './ui/pages/movie-detail-page/movie-detail-page.component';
+import { DetailLayoutComponent } from './ui/layouts/detail-layout/detail-layout.component';
+import { CategoryDetailPageComponent } from './ui/pages/category-detail-page/category-detail-page.component';
 import { CategoryPageComponent } from './ui/pages/category-page/category-page.component';
 import { MainLayoutComponent } from './ui/layouts/main-layout/main-layout.component';
 import { HomePageComponent } from './ui/pages/home-page/home-page.component';
@@ -18,6 +21,10 @@ const routes: Routes = [
         path: 'movie',
         children: [
           {
+            path: 'all',
+            component: MoviePageComponent,
+          },
+          {
             path: ':id',
             component: MoviePageComponent,
           },
@@ -31,8 +38,32 @@ const routes: Routes = [
             component: CategoryPageComponent,
           },
           {
-            path: ':id',
+            path:':id',
             component: CategoryPageComponent,
+          }
+        ],
+      },
+    ],
+  },
+  {
+    path: 'detail',
+    component: DetailLayoutComponent,
+    children: [
+      {
+        path: 'movie',
+        children: [
+          {
+            path: ':id',
+            component: MovieDetailPageComponent,
+          },
+        ],
+      },
+      {
+        path: 'category',
+        children: [
+          {
+            path: ':id',
+            component: CategoryDetailPageComponent,
           },
         ],
       },

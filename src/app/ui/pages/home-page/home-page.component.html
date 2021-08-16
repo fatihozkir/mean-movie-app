@@ -1,6 +1,4 @@
-<h2>Movies</h2>
-<hr />
-
+<app-main-title [title]="'Recent Movies'"></app-main-title>
 <div class="row">
   <div class="col-md-6 mb-3" *ngFor="let movie of movies">
     <app-card
@@ -14,13 +12,14 @@
       (onClick)="onClick(movie.id)"
     ></app-card>
   </div>
-  <mat-paginator
-    [length]="totalAmount"
-    [pageSize]="postsPerPage"
-    [pageSizeOptions]="pageSizeOptions"
-    (page)="onChangedPage($event)"
-    aria-label="Select page"
-  >
-  </mat-paginator>
+  <div class="w-100 d-flex justify-content-center align-items-center mb-5">
+    <mat-paginator
+      [length]="totalAmount"
+      [pageSize]="postsPerPage"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="onChangedPage($event)"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
 </div>
-

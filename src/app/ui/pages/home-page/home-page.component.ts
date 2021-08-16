@@ -6,10 +6,9 @@ import { MovieList } from '../../../data/models/movie/movie-list.model';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-
   constructor(private router: Router) {}
   showButton: boolean = true;
   // MatPaginator Inputs
@@ -59,6 +58,6 @@ export class HomePageComponent implements OnInit {
     this.postsPerPage = pageData.pageSize;
   }
   onClick(movieId: string) {
-    this.router.navigate(['movie', movieId]);
+    this.router.navigate(['detail/movie', movieId]);
   }
 }

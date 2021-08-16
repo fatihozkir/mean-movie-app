@@ -1,3 +1,7 @@
+import { MovieDetailPageModule } from './ui/pages/movie-detail-page/movie-detail-page.module';
+import { MoviePageModule } from './ui/pages/movie-page/movie-page.module';
+import { CategoryPageModule } from './ui/pages/category-page/category-page.module';
+import { CategoryDetailPageModule } from './ui/pages/category-detail-page/category-detail-page.module';
 import { LayoutModule } from './core/modules/layout.module';
 import { HomePageModule } from './ui/pages/home-page/home-page.module';
 import { NgModule } from '@angular/core';
@@ -16,7 +20,11 @@ import { CoreModule } from './core/modules/core.module';
     AppRoutingModule,
     CoreModule,
     LayoutModule,
-    HomePageModule
+    HomePageModule,
+    CategoryDetailPageModule,
+    CategoryPageModule,
+    MoviePageModule,
+    MovieDetailPageModule
   ],
   providers: [],
   bootstrap: [AppComponent],
