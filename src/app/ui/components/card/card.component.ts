@@ -10,7 +10,7 @@ export class CardComponent implements OnInit {
   @Input() title: string | undefined;
   @Input() text: string | undefined;
   @Input() link: string | undefined;
-
+  @Input() wordWrap: boolean = false;
   @Input() showButton: boolean = false;
   @Input() className: string = 'btn-primary';
   @Input() buttonText: string = 'button';
@@ -20,7 +20,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {}
 
-  btnOnClick(event:Event){
+  btnOnClick(event: Event) {
     this.onClick.emit(event);
   }
 }

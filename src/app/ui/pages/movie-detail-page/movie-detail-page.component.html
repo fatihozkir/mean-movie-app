@@ -1,6 +1,121 @@
+<div class="container">
+  <div class="row" *ngIf="isLoading">
+    <mat-spinner class="mx-auto"></mat-spinner>
+  </div>
+  <div class="row" *ngIf="movie">
+    <div class="col-md-4">
+      <app-main-title [title]="'Movie Recap'"></app-main-title>
+      <app-material-card
+        *ngIf="movie"
+        [title]="movie.title"
+        [photo]="movie.imageUrl"
+        [description]="movie.overview"
+      ></app-material-card>
+    </div>
+    <div class="col-md-8">
+      <app-main-title [title]="'Details'"></app-main-title>
 
-<div *ngIf="movie">
-    <p>{{movie.title}}</p>
-    <img [src]="movie.imageUrl" alt="">
-   
+      <table class="table table-striped">
+        <tbody>
+          <tr *ngIf="movie.releaseDate">
+            <th>Release Date</th>
+            <td>{{ movie.releaseDate | date }}</td>
+          </tr>
+          <tr *ngIf="movie.originalTitle">
+            <th>Original Title</th>
+            <td>{{ movie.originalTitle }}</td>
+          </tr>
+
+          <tr *ngIf="movie.originalLanguage">
+            <th>Original Language</th>
+            <td>
+              <h3>
+                <span class="badge badge-success">{{
+                  movie.originalLanguage
+                }}</span>
+              </h3>
+            </td>
+          </tr>
+
+          <tr *ngIf="movie.genres">
+            <th>Categories</th>
+            <td>
+              <h3>
+                <a
+                  *ngFor="let category of movie.genres; let i = index"
+                  [routerLink]="['/category', category.id]"
+                  class="badge mr-2"
+                  [ngClass]="{
+                    'badge-warning': i % 2 == 0,
+                    'badge-info': i % 2 != 0
+                  }"
+                  >{{ category.title }}</a
+                >
+              </h3>
+            </td>
+          </tr>
+
+          <tr *ngIf="movie.status">
+            <th>Status</th>
+            <td>
+              <h3>
+                <span
+                  class="badge mr-2"
+                  [style.className]=""
+                  [ngClass]="{
+                    'badge-success': movie.status === 'Released',
+                    'badge-info': movie.status !== 'Released'
+                  }"
+                  >{{ movie.status }}</span
+                >
+              </h3>
+            </td>
+          </tr>
+
+          <tr *ngIf="movie.spokenLanguages">
+            <th>Spoken Languages</th>
+            <td>
+              <h3>
+                <span
+                  *ngFor="let language of movie.spokenLanguages; let i = index"
+                  class="badge mr-2"
+                  [style.className]=""
+                  [ngClass]="{
+                    'badge-warning': i % 2 == 0,
+                    'badge-info': i % 2 != 0
+                  }"
+                  >{{ language }}</span
+                >
+              </h3>
+            </td>
+          </tr>
+
+          <tr *ngIf="movie.runtime">
+            <th>Runtime</th>
+            <td>
+              <h3>
+                <span class="badge badge-danger">
+                  {{ movie.runtime | numberToHour  }}
+                </span>
+              </h3>
+            </td>
+          </tr>
+
+          <tr *ngIf="movie.voteAverage">
+            <th>Vote Average</th>
+            <td>
+              {{ movie.voteAverage | number }}
+            </td>
+          </tr>
+
+          <tr *ngIf="movie.imdbLink">
+            <th>IMDB Link</th>
+            <td>
+              <a target="_blank" [href]="movie.imdbLink">See on IMDB</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

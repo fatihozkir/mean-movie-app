@@ -1,0 +1,45 @@
+<mat-card class="card">
+  <mat-card-header>
+    <div
+      *ngIf="photo"
+      mat-card-avatar
+      class="image"
+      [style.background-image]="'url(' + photo + ')'"
+    ></div>
+    <mat-card-title *ngIf="title">{{ title }}</mat-card-title>
+    <mat-card-subtitle *ngIf="subtitle" class="d-flex align-items-center">
+      {{ subtitle }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <img
+    *ngIf="photo"
+    class="main-image"
+    mat-card-image
+    [src]="photo"
+    [alt]="title"
+  />
+  <mat-card-content *ngIf="description">
+    <p>{{ description }}</p>
+  </mat-card-content>
+  <mat-card-actions
+    *ngIf="buttonPrimaryShow || buttonSecondaryShow"
+    class="d-flex justify-content-center align-items-center"
+  >
+    <button
+      *ngIf="buttonPrimaryShow"
+      (click)="onButtonPrimaryClick($event)"
+      mat-raised-button
+      color="primary"
+    >
+      {{ buttonPrimaryTitle }}
+    </button>
+    <button
+      *ngIf="buttonSecondaryShow"
+      (click)="onButtonSecondaryClick($event)"
+      mat-raised-button
+      color="warn"
+    >
+      {{ buttonSecondaryTitle }}
+    </button>
+  </mat-card-actions>
+</mat-card>

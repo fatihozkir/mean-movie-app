@@ -1,0 +1,11 @@
+.card-img-top {
+  max-height: 250px !important;
+  object-fit: contain;
+}
+.wordWrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+
+  white-space: nowrap;
+}

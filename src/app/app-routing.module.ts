@@ -1,3 +1,5 @@
+import { RegisterPageComponent } from './ui/pages/auth/register-page/register-page.component';
+import { LoginPageComponent } from './ui/pages/auth/login-page/login-page.component';
 import { MovieDetailPageComponent } from './ui/pages/movie-detail-page/movie-detail-page.component';
 import { DetailLayoutComponent } from './ui/layouts/detail-layout/detail-layout.component';
 import { CategoryDetailPageComponent } from './ui/pages/category-detail-page/category-detail-page.component';
@@ -7,6 +9,7 @@ import { HomePageComponent } from './ui/pages/home-page/home-page.component';
 import { MoviePageComponent } from './ui/pages/movie-page/movie-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MovieListingPageComponent } from './ui/pages/movie-listing-page/movie-listing-page.component';
 
 const routes: Routes = [
   {
@@ -18,19 +21,6 @@ const routes: Routes = [
         component: HomePageComponent,
       },
       {
-        path: 'movie',
-        children: [
-          {
-            path: 'all',
-            component: MoviePageComponent,
-          },
-          {
-            path: ':id',
-            component: MoviePageComponent,
-          },
-        ],
-      },
-      {
         path: 'category',
         children: [
           {
@@ -38,9 +28,22 @@ const routes: Routes = [
             component: CategoryPageComponent,
           },
           {
-            path:':id',
+            path: ':id',
             component: CategoryPageComponent,
-          }
+          },
+        ],
+      },
+      {
+        path: 'auth',
+        children: [
+          {
+            path: 'login',
+            component: LoginPageComponent,
+          },
+          {
+            path: 'register',
+            component: RegisterPageComponent,
+          },
         ],
       },
     ],
@@ -58,14 +61,15 @@ const routes: Routes = [
           },
         ],
       },
+    ],
+  },
+  {
+    path: 'movie',
+    component: DetailLayoutComponent,
+    children: [
       {
-        path: 'category',
-        children: [
-          {
-            path: ':id',
-            component: CategoryDetailPageComponent,
-          },
-        ],
+        path: 'listing/:type',
+        component: MovieListingPageComponent,
       },
     ],
   },

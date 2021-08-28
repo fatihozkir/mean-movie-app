@@ -1,8 +1,8 @@
 export interface MovieList {
-    id:string;
-    title:string;
-    description:string;
-    imageUrl:string;
-    createdDate:Date;
+    id: number;
+    title: string;
+    imageUrl: string;
+    overview: string;
+    releaseDate: string;
 
 }

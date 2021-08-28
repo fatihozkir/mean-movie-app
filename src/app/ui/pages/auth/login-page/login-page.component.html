@@ -1,0 +1,59 @@
+<app-main-title [title]="'Login Now !'"></app-main-title>
+<div class="container">
+  <div class="row"></div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <!-- <ul>
+      <li *ngFor="let coin of coins">
+        {{ coin }}
+      </li>
+    </ul>
+    <ul>
+      <li (click)="onTypeClick(type)" *ngFor="let type of types">
+        {{ type }}
+      </li>
+    </ul> -->
+
+    <mat-card>
+      <mat-spinner *ngIf="isLoading" class="mx-auto"></mat-spinner>
+      <form *ngIf="!isLoading" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <mat-form-field class="w-100">
+          <input
+            placeholder="E-Mail"
+            matInput
+            type="email"
+            id="email"
+            formControlName="email"
+          />
+          <mat-error *ngIf="loginForm.controls['email'].invalid"
+            >Please check the email value again</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+          <input
+            placeholder="password"
+            matInput
+            type="password"
+            id="password"
+            formControlName="password"
+          />
+          <mat-error *ngIf="loginForm.controls['password'].invalid"
+            >Please check the password value again</mat-error
+          >
+        </mat-form-field>
+        <br />
+        <button
+          *ngIf="!isLoading"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          Login
+        </button>
+      </form>
+    </mat-card>
+  </div>
+</div>

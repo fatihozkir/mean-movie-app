@@ -1,1 +1,28 @@
 <app-main-title [title]="'Category Movies'"></app-main-title>
+<div class="row" *ngIf="isLoading">
+  <mat-spinner class="mx-auto"></mat-spinner>
+</div>
+<div class="row" *ngIf="!isLoading">
+  <div class="col-md-6 mb-3" *ngFor="let movie of movies">
+    <app-card
+      [id]="movie.id"
+      [title]="movie.title"
+      [text]="movie.overview"
+      [imageUrl]="movie.imageUrl"
+      [wordWrap]="true"
+      [showButton]="true"
+      [className]="'btn-success'"
+      [buttonText]="'See Details'"
+      (onClick)="onClick(movie.id)"
+    ></app-card>
+  </div>
+  <div class="w-100 d-flex justify-content-center align-items-center mb-5">
+    <mat-paginator
+      [length]="totalAmount"
+      [pageSize]="pageSize"
+      (page)="onChangedPage($event)"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+</div>

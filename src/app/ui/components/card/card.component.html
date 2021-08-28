@@ -1,21 +1,18 @@
 <div class="card">
-  <img
-    class="card-img-top"
-    *ngIf="imageUrl"
-    [src]="imageUrl"
-    alt="title"
-  />
+  <img class="card-img-top" *ngIf="imageUrl" [src]="imageUrl" [alt]="title" />
   <div class="card-body">
-    <h5 class="card-title" *ngIf="title">{{ title }}</h5>
-    <p class="card-text" *ngIf="text">
+    <h3 class="card-title font-weight-bold" *ngIf="title">{{ title }}</h3>
+    <p class="card-text" [class.wordWrap]="wordWrap" *ngIf="text">
       {{ text }}
     </p>
-    <div
+  
+    <button
+      mat-raised-button
+      color="accent"
       *ngIf="showButton"
       (click)="btnOnClick($event)"
-      [className]="'btn ' + className"
-      >{{ buttonText }}</div
     >
-
+      {{ buttonText }}
+    </button>
   </div>
 </div>

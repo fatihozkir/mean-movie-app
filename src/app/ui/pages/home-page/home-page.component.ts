@@ -1,63 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { MovieService } from './../../../services/movie/movie.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { MovieList } from '../../../data/models/movie/movie-list.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent implements OnInit {
-  constructor(private router: Router) {}
-  showButton: boolean = true;
-  // MatPaginator Inputs
-  totalAmount = 0;
-  currentPageIndex = 1;
-  postsPerPage = 1;
-  pageSizeOptions: number[] = [1, 2, 5, 10];
-  generateRandom(): string {
-    return Math.floor(Math.random() * (1000 - 1) + 1).toString();
-  }
-  movies: MovieList[] = [
-    {
-      id: this.generateRandom(),
-      createdDate: new Date(),
-      description: 'Desc',
-      title: 'Title1',
-      imageUrl: 'https://placeimg.com/500/250/tech',
-    },
-    {
-      id: this.generateRandom(),
-      createdDate: new Date(),
-      description: 'Desc',
-      title: 'Title1',
-      imageUrl: 'https://placeimg.com/500/250/nature',
-    },
-    {
-      id: this.generateRandom(),
-      createdDate: new Date(),
-      description: 'Desc',
-      title: 'Title1',
-      imageUrl: 'https://placeimg.com/500/250/arch',
-    },
-    {
-      id: this.generateRandom(),
-      createdDate: new Date(),
-      description: 'Desc',
-      title: 'Title1',
-      imageUrl: 'https://placeimg.com/500/250/people',
-    },
-  ];
+export class HomePageComponent implements OnInit, OnDestroy {
+  constructor(private router: Router, private movieService: MovieService) {}
+  isLoading = false;
 
+  movies: MovieList[] = [];
+  private moviesSub: Subscription = new Subscription();
   ngOnInit() {
-    this.totalAmount = this.movies.length;
+    this.isLoading = true;
+    this.movieService.getTopRatedMovies();
+    this.moviesSub = this.movieService
+      .getMoviesSubscription()
+      .subscribe((data) => {
+        this.movies = data.movies;
+        this.isLoading = false;
+      });
   }
-  onChangedPage(pageData: PageEvent) {
-    this.currentPageIndex = pageData.pageIndex + 1;
-    this.postsPerPage = pageData.pageSize;
+  ngOnDestroy() {
+    this.moviesSub.unsubscribe();
   }
-  onClick(movieId: string) {
+  // onChangedPage(pageData: PageEvent) {
+  //   this.currentPageIndex = pageData.pageIndex + 1;
+  //   this.moviesPerPage = pageData.pageSize;
+  //   this.movieService.getMovies(this.currentPageIndex);
+  // }
+  onClick(movieId: any) {
     this.router.navigate(['detail/movie', movieId]);
   }
 }

@@ -1,11 +1,10 @@
 import { CoreModule } from './../../../core/modules/core.module';
 import { NgModule } from '@angular/core';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { CategoryPageComponent } from './category-page.component';
 
 @NgModule({
-  imports: [CoreModule, MatPaginatorModule],
-  exports: [CategoryPageComponent],
+  imports: [CoreModule],
+  exports: [],
   declarations: [CategoryPageComponent],
   providers: [],
 })

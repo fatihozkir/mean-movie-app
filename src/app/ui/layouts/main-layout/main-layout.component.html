@@ -1,12 +1,15 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Categories</h2>
-            <hr>
-            <app-list-group [list]="categories" [routePath]="'category'"></app-list-group>
-        </div>
-        <div class="col-md-8">
-            <router-outlet></router-outlet>
-        </div>
+  <div class="row">
+    <div class="col-md-4">
+      <app-main-title [title]="'Top Rated Categories'"></app-main-title>
+      <mat-spinner *ngIf="isLoading" class="mx-auto"></mat-spinner>
+      <app-list-group
+        [list]="categories"
+        [routePath]="'category'"
+      ></app-list-group>
     </div>
+    <div class="col-md-8">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
